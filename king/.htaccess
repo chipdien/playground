@@ -1,0 +1,4 @@
+<FilesMatch "\.(?:db)$">
+order allow,deny
+deny from all
+</FilesMatch>

@@ -1,0 +1,72 @@
+.tabs-left .nav-tabs {
+    float: right !important;
+}
+
+.col-xs-1, .col-xs-10, .col-xs-11, .col-xs-12, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9 {
+    float: right !important;
+}
+
+.tabs-left .nav-tabs .active > a, .tabs-left .nav-tabs .active > a:hover, .tabs-left .nav-tabs .active > a:focus {
+    border-right: 5px solid #3A5795;
+    border-left: none;
+}
+
+@media (min-width: 768px){
+	.col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9 {
+	    float: right !important;
+	}	
+}
+
+
+@media (min-width: 768px){
+	.navbar-header {
+	    float: right !important;
+	}
+}
+
+@media (min-width: 768px){
+	.navbar-nav.navbar-right {
+		float: left !important;
+	}
+}
+
+@media (min-width: 768px){
+	.navbar-nav {
+	    float: right !important;;
+	}
+}
+
+@media (min-width: 768px){
+	.navbar-nav>li {
+	    float: right !important;;
+	}	
+}
+
+.dropdown-menu {
+	text-align: right !important;;
+}
+
+.PreviewPoster img {
+    float: right;
+    margin: 0px 0px 5px 5px;
+}
+
+ul.nav.nav-tabs {
+    padding: 0;
+}
+
+.previewPoster .userFullName {
+    clear: left;
+}
+
+.defaultMessage {
+    float: right;
+}
+
+.settings .tab-content {
+    padding: 0px;
+}
+
+.checkbox-style:checked + label:after {
+    right: -3px;
+}

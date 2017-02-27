@@ -1,0 +1,50 @@
+{% include "blocks/flash_bag.twig" %}
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h3 class="panel-title"><span class="glyphicon glyphicon-duplicate"></span>
+			{{ l("POSTS") }}
+		</h3>
+	</div>
+	<div class="panel-body">
+		<table class="table table-bordered table-striped dataTable" id="Databale" width="100%">
+			<thead>
+				<tr>
+					<td width="20px">
+						<input type='checkbox' id="checkbox-all" class="check-all checkbox-style" name='a' />
+						<label for="checkbox-all"></label>
+					</td>
+					<td>{{ l('POST_TITLE') }}</td>
+					<td>{{ l('POST_TYPE') }}</td>
+					<td>{{ l('DATE_CREATED') }}</td>
+					<td></td>
+				</tr>
+			</thead>
+				{% if posts is not empty %}
+					{% for post in posts %}
+						<tr>
+							<td>
+								<input type='checkbox' class='checkbox checkbox-style' name='' id='' value='' />
+								<label for=''></label>
+							</td>
+							<td>{{ post.post_title|capitalize }}</td>
+							<td>
+								<h4>
+									<span class='label label-default'>
+										<span class='glyphicon glyphicon-{{ post.type }}'> {{ post.type|capitalize }}</span>
+									</span>
+								</h4>
+							</td>
+							<td>{{ post.date_created }}</td>
+							<td>
+							<a href='posts.php?action=delete&id={{ post.id }}' title="{{ l('DELETE') }}" class='btn btn-danger delete' id="{{ post.id }}" onclick='return confirm("{{ l('POST_DELETE_CONFIRM') }}");'><span class='glyphicon glyphicon-trash'></span> {{ l('DELETE') }}</a>
+							<a href="index.php?post_id={{ post.id }}" title=" {{ l('POST') }}" class='btn btn-primary' id="{{ post.id }}"><span class='glyphicon glyphicon-pencil'></span> {{ l('POST') }}</a>
+							</td>
+						</tr>
+					{% endfor %}
+				{% else %}
+					<td colspan="5">{{ l('No records') }}</td>
+					</tr>
+				{% endif %}
+		</table>
+	</div>
+</div>

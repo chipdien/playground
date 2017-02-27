@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html dir="{{ l("DIR") }}">
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="">
+  <meta name="author" content="Abdellah Gounane - Gounane.com">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/png" href="{{ base_url('theme/default/images/favicon.png') }}" >
+
+  <title>{{ settings('sitename') }} | {% block title %}{% endblock %}</title>
+
+{% block stylesheets %}
+  <link href="{{ base_url('theme/default/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+  <link href="{{ base_url('theme/default/css/font-awesome.css') }}" rel="stylesheet" />
+  {% if lang("DIR") == "rtl" %}
+  <link href="{{ base_url('theme/default/css/rtl.css') }}" rel="stylesheet" />
+  {% endif %}
+{% endblock %}
+  
+  {% block javascripts %}
+    <script src="{{ base_url('theme/default/js/jquery.js') }}"></script>
+  {% endblock %}
+
+  {% block head_js %}
+  {% endblock %}
+
+</head>
+<body>
+<noscript>
+  <div class="alerts alert alert-danger">
+    <span class="glyphicon glyphicon-warning-sign"></span>
+    <p class='alerttext'>JavaScript MUST be enabled in order for you to use kingposter. However, it seems JavaScript is either disabled or not supported by your browser. If your browser supports JavaScript, Please enable JavaScript by changing your browser options, then try again.</p>
+  </div>
+</noscript>
+  {% block header %}
+  {% endblock %}
+  <div id="wrapper">
+  {% block flash_bag %}
+    {% include "blocks/flash_bag.twig" %}
+  {% endblock %}
+  {% block body %}
+  {% endblock %}
+  </div> <!-- End wrapper -->
+
+  {% block footer %}
+    <p class="footer">{{ l('COPYRIGHT') }} &copy {{ "now"|date("Y") }} Powered by <a href='http://kingposter.net' target='_blank'>Kingposter</a> {{ version }}</p>
+  {% endblock %}
+
+  {% block javascripts_footer %}
+    <script src="{{ base_url('theme/default/bootstrap/js/bootstrap.min.js') }}"></script>
+  {% endblock %}
+
+</body>
+</html>
