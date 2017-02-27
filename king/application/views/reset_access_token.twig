@@ -1,0 +1,60 @@
+{% extends "base_admin.twig" %}
+
+{% block title %}
+	{{ l("RESET_ACCESS_TOKEN") }}
+{% endblock %}
+
+{% block header %}
+{% endblock %}
+
+{% block body %}
+<form method='POST'>
+<div class="row">
+	<div class="col-sm-6">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title">{{ l('GET_ACCESS_TOKEN_URL') }}</h3>
+			</div>
+			<div class="panel-body">
+				<p><button onclick="window.open('https://www.facebook.com/v2.3/dialog/oauth?response_type=token&display=popup&client_id=145634995501895&redirect_uri=https%3A%2F%2Fdevelopers.facebook.com%2Ftools%2Fexplorer%2Fcallback&scope=user_likes, user_managed_groups,user_posts,email,manage_pages,publish_pages,publish_actions,public_profile','','height=500,width=600'); return false;" class="btn btn-primary">{{ l('API_CALLBACK_URL') }}</button> {{ l('COPY_POPUP_LINK_IN_TEXT_EREA') }}</p>
+				<textarea name='accessTokenURL' id='accessTokenURL' rows='3' cols='100' class="form-control" placeholder='{{ l('PASTE_APP_AUTH_LINK') }}'></textarea>
+			</div>
+			</div>
+		</div>
+		<div class="col-sm-6">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title">
+					 {{ l('GET_ACCESS_TOKEN_GRAPH_API_EXPLORER') }}
+					</h3>
+				</div>
+				<div class="panel-body">
+					<p><a href="https://developers.facebook.com/tools/explorer" target="_blank" class="btn btn-primary">{{ l('GET_ACCESS_TOKEN_GRAPH_API_EXPLORER_PAGE') }}</a></p>
+					<textarea name='accessToken' rows='3' cols='100' id="accessToken" class="form-control" placeholder='{{ l('ENTER_ACCESS_TOKEN_HERE') }}'></textarea>
+					<p>
+					<input type='submit' class='btn btn-primary' name='submit' value='{{ l('SET_ACCESS_TOKEN') }}'>
+					<input type='button' class='btn btn-primary testAccessToken' value='{{ l('TEST_ACCESS_TOKEN') }}'>
+					<script>
+					(function($){
+					  $('#accessTokenURL').bind('input propertychange', function() {
+							var at = $(this).val().match(/access_token=(.*)(?=&expires_in)/);
+							if(at){$("#accessToken").val(at[1]);}
+						});
+
+						$(".testAccessToken").click(function(){
+							$.post( "ajax/accesstoken.php", {isAccessTokenValid:'true',accessToken:$("#accessToken").val()},function( data ) {
+								if(data != "true"){
+									alertBox('{{ l('INVALID_ACCESS_TOKEN') }}','danger','.alert',true,true);
+								}else{
+									alertBox('{{ l('ACCESS_TOKEN_IS_VALID') }}','success','alert',true,true);
+								}
+							});
+						});
+					 })(jQuery); 
+				</script>
+			</div>
+		</div>
+	</div>
+</div>
+</form>
+{% endblock %}

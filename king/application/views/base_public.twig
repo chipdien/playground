@@ -1,0 +1,24 @@
+{% extends "base.twig" %}
+
+{% block stylesheets %}
+  {{ parent() }}
+  <link href="{{ base_url('theme/default/css/signin_up.css') }}" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block head_js %}
+{% endblock %}
+
+{% block flash_bag %}
+{% endblock %}
+
+{% block header %}
+{% endblock %}
+
+{% block footer %}
+  <p class="footer">{{ l('COPYRIGHT') }} &copy {{ "now"|date("Y") }} Powered by <a href='http://kingposter.net' target='_blank'>Kingposter</a></p>
+{% endblock %}
+
+{% block javascripts %}
+  {{ parent() }}
+  <script src="{{ base_url('theme/default/js/signin_up.js') }}"></script>
+{% endblock %}

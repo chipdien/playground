@@ -1,0 +1,80 @@
+{% extends 'base_admin.twig' %}
+
+{% block title %}{{ l('Logs') }}{% endblock %}
+
+{% block head_js %}
+	<script>
+		$(document).ready(function(){
+
+			var translations = {
+		            "lengthMenu": "{{ lang('Display %s records per page')|format('_MENU_') }}",
+		            "zeroRecords": "{{ l('No records available') }}",
+					"info": "{{ lang('Showing %s to %s of %s')|format('_START_','_END_','_TOTAL_') }}",
+		            "infoFiltered": "{{ lang('(filtered from %s total records)')|format('_MAX_') }}",
+		            "search":  "{{ l('Search') }}",
+		            "paginate": {
+				        "first": "{{ l('First') }}",
+				        "last": "{{ l('Last') }}",
+				        "next":  "{{ l('Next') }}",
+				        "previous":   "{{ l('Previous') }}",
+				    }
+			};
+
+			var oDataTable = $('#datatable').DataTable({
+				"aaSorting": [],
+				"responsive": true,
+		        "aoColumnDefs": [{
+		            'bSortable': false,
+		            'aTargets': [0]
+		        }],
+		        "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+				"iDisplayLength": 50,
+				"language": translations,
+		    });
+
+		});
+	</script>
+{% endblock %}
+{% block body %}
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h3 class="panel-title"><span class="glyphicon glyphicon-alert"></span>
+			{{ l("logs") }}
+		</h3>
+	</div>
+	<div class="panel-body">
+		<a href="{{ clear_a }}" title="Clear logs" class="btn btn-danger">
+			{{ l("Clear log") }}
+		</a>
+		<table class="table table-bordered table-striped" id="datatable">
+			<thead>
+				<tr>
+					<td width="150">{{ l("DATE_CREATED") }}</td>
+					<td>{{ l("LOG_DETAILS") }}</td>
+				</tr>
+			</thead>
+			<tbody>
+				{% if logs is not empty %}
+					{% for log in logs %}
+						<tr>
+							<td>{{ log.date }}</td>
+							<td><p class='log'>{{ log.content|raw }}</p></td>
+						</tr>
+					{% endfor %}
+				{% endif %}
+			</tbody>
+		</table>
+	</div>
+</div>
+{% endblock %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	<link href="{{ base_url('theme/default/css/datatables.bootstrap.min.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block javascripts %}
+	{{ parent() }}
+	<script src="{{ base_url('theme/default/js/jquery.dataTables.min.js') }}"></script>
+	<script src="{{ base_url('theme/default/js/dataTables.bootstrap.min.js') }}"></script>
+{% endblock %}

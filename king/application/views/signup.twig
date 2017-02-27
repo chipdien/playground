@@ -1,0 +1,80 @@
+{% extends "base_public.twig" %}
+
+{% block title %}
+	{{ l("SIGNUP") }}
+{% endblock %}
+
+{% block body %}
+<div class="logmod">
+  <span class="logmod__logo">
+    <img src="{{ base_url('theme/default/images/logo_large.png') }}" alt="logo"/>
+  </span>
+  <div class="logmod__wrapper">
+    <div class="logmod__container">
+      <ul class="logmod__tabs">
+        <li data-tabtar="lgm-1"><a href="signin.php">{{ l("SIGNIN") }}</a></li>
+        <li data-tabtar="lgm-2" class="current">
+          <a href="signup.php">
+            {{ l("SIGNUP") }}
+          </a>
+        </li>
+      </ul>
+      <div class="logmod__tab-wrapper">
+        <!-- Sign up -->
+        <div class="logmod__tab lgm-2 show">
+          <div class="logmod__heading">
+            <span class="logmod__heading-subtitle">
+              {{ l("ENTER_DETAILS_TO_CREATE_ACCOUNT") }}
+            </span>
+            {% include "blocks/flash_bag.twig" %}
+          </div>
+          <div class="logmod__form">
+            <form accept-charset="utf-8" method="POST" action="#" class="simform signup">
+              <div class="sminputs">
+                <div class="input full">
+                  <label class="string optional" for="username">
+                    {{ l("USERNAME") }}*
+                  </label>
+                  <input class="string optional" maxlength="255" name="username" id="username" placeholder="{{ l("USERNAME") }}" type="text" size="50" value="{{ input_post("username") }}" />
+                </div>
+              </div>
+
+              <div class="sminputs">
+
+                <div class="input string optional">
+                  <label class="string optional" for="password">
+                    {{ l('PASSWORD') }}*
+                  </label>
+                  <input class="string optional" maxlength="255" name="password" id="password" placeholder="{{ l('PASSWORD') }}" type="password" size="50" />
+                </div>
+
+                <div class="input string optional">
+                  <label class="string optional" for="repassword">
+                    {{ l('RE_ENTER_PASSWORD') }}*
+                  </label>
+                  <input class="string optional" maxlength="255" name="repassword" id="repassword" placeholder="{{ l('RE_ENTER_PASSWORD') }}" type="password" size="50" />
+                </div>
+
+              </div>
+
+              <div class="sminputs">
+                <div class="input full">
+                  <label class="string optional" for="email">
+                    {{ l("EMAIL") }}*
+                  </label>
+                  <input class="string optional" maxlength="255" name="email" id="email" placeholder="{{ l("EMAIL") }}" type="text" size="50" value="{{ input_post("email") }}" />
+                </div>
+              </div>
+
+              <div class="simform__actions">
+                <input type="submit" class="submit" id="signupBtn" name="signup" value="{{ l("CREATE_ACCOUNT") }}" />
+                <span class="simform__actions-sidetext"><a class="special" role="link" href="recover.php">{{ l("FORGOT_PASSWORD_USERNAME") }}</a></span>
+              </div> 
+            </form>
+          </div> 
+        </div>
+      </div>
+    </div> 
+  </div>
+</div>
+{% endblock %}
